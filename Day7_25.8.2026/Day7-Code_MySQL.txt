@@ -1,0 +1,131 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dimpu              |
+| information_schema |
+| mysql              |
+| nsti_r             |
+| nsti_rhyd          |
+| performance_schema |
+| sakila             |
+| sys                |
+| teja               |
+| world              |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> create database kvdc;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use kvdc;
+Database changed
+mysql> create table student(sno int, name varchar(50), marks int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into student values (1,"Vahid Khan",null),(2,"Teja", 48),(3,"Pranay",58);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |  NULL |
+|    2 | Teja       |    48 |
+|    3 | Pranay     |    58 |
++------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update student set marks=95 where name="vahid Khan";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    48 |
+|    3 | Pranay     |    58 |
++------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update student set marks=95 where name="Teja";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
+|    3 | Pranay     |    58 |
++------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update student set marks= null where name="Pranay";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
+|    3 | Pranay     |  NULL |
++------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from student where sno=3;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
++------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student values (3,"Pranay",58),(4,"shahid",90);
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
+|    3 | Pranay     |    58 |
+|    4 | shahid     |    90 |
++------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student order by marks;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    3 | Pranay     |    58 |
+|    4 | shahid     |    90 |
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
++------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student order by marks DESC;
++------+------------+-------+
+| sno  | name       | marks |
++------+------------+-------+
+|    1 | Vahid Khan |    95 |
+|    2 | Teja       |    95 |
+|    4 | shahid     |    90 |
+|    3 | Pranay     |    58 |
++------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
