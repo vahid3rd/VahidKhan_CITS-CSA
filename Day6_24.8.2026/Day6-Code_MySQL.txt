@@ -1,0 +1,128 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| dimpu              |
+| information_schema |
+| mysql              |
+| nsti_r             |
+| performance_schema |
+| sakila             |
+| sys                |
+| teja               |
+| world              |
++--------------------+
+9 rows in set (0.07 sec)
+
+mysql> create database Nsti_RHYD;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Nsti_RHYD:
+ERROR 1049 (42000): Unknown database 'nsti_rhyd:'
+mysql> use Nsti_RHYD;
+Database changed
+mysql> CREATE TABLE student (
+    ->     sno INT PRIMARY KEY,
+    ->     name VARCHAR(50) NOT NULL,
+    ->     marks INT,
+    ->     address VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> INSERT INTO student (sno, name, marks, address) VALUES
+    -> (1, 'Anil', 80, 'Chennai'),
+    -> (2, 'Sunil', 70, 'Delhi'),
+    -> (3, 'Bhavani', 90, 'Chennai'),
+    -> (4, 'Arun', 50, 'Delhi');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM student WHERE marks >= 70;
++-----+---------+-------+---------+
+| sno | name    | marks | address |
++-----+---------+-------+---------+
+|   1 | Anil    |    80 | Chennai |
+|   2 | Sunil   |    70 | Delhi   |
+|   3 | Bhavani |    90 | Chennai |
++-----+---------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student WHERE address <> 'Delhi';
++-----+---------+-------+---------+
+| sno | name    | marks | address |
++-----+---------+-------+---------+
+|   1 | Anil    |    80 | Chennai |
+|   3 | Bhavani |    90 | Chennai |
++-----+---------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student WHERE address = 'Chennai' AND marks > 80;
++-----+---------+-------+---------+
+| sno | name    | marks | address |
++-----+---------+-------+---------+
+|   3 | Bhavani |    90 | Chennai |
++-----+---------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM student WHERE address = 'Delhi' OR marks < 60;
++-----+-------+-------+---------+
+| sno | name  | marks | address |
++-----+-------+-------+---------+
+|   2 | Sunil |    70 | Delhi   |
+|   4 | Arun  |    50 | Delhi   |
++-----+-------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student WHERE NOT address = 'Chennai';
++-----+-------+-------+---------+
+| sno | name  | marks | address |
++-----+-------+-------+---------+
+|   2 | Sunil |    70 | Delhi   |
+|   4 | Arun  |    50 | Delhi   |
++-----+-------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM student WHERE marks BETWEEN 60 AND 90;
++-----+---------+-------+---------+
+| sno | name    | marks | address |
++-----+---------+-------+---------+
+|   1 | Anil    |    80 | Chennai |
+|   2 | Sunil   |    70 | Delhi   |
+|   3 | Bhavani |    90 | Chennai |
++-----+---------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT name, marks AS student_score FROM student;
++---------+---------------+
+| name    | student_score |
++---------+---------------+
+| Anil    |            80 |
+| Sunil   |            70 |
+| Bhavani |            90 |
+| Arun    |            50 |
++---------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT name, marks + 5 AS total_with_grace FROM student;
++---------+------------------+
+| name    | total_with_grace |
++---------+------------------+
+| Anil    |               85 |
+| Sunil   |               75 |
+| Bhavani |               95 |
+| Arun    |               55 |
++---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT name, marks / 2 FROM student;
++---------+-----------+
+| name    | marks / 2 |
++---------+-----------+
+| Anil    |   40.0000 |
+| Sunil   |   35.0000 |
+| Bhavani |   45.0000 |
+| Arun    |   25.0000 |
++---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql>
