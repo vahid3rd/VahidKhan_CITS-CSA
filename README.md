@@ -10,9 +10,14 @@ Welcome to my CITS (Computer Software Application) tracking repository. I use th
 All my daily exercises and notes are organized into separate folders by date. Below is a log of what was taught in class:
 
 | Day & Date | Topics Covered / Practical Work | Folder Link |
-| **Day 7** - 25.08.2026 | *(Understanding NULL,Executing UPDATE and DELETE,Sorting Query Results)* | Day7_25.8.2026 |
-| **Day 6** - 24.08.2026 | *(Add a brief summary of what you learned here)* | Day6_24.8.2026 |
-| **Day 5** - 23.08.2026 | *(Learen)* | *Folder Name* |
+| **Day 7** - 25.08.2026 | *(Understanding NULL,Executing UPDATE and DELETE,Sorting Query Results)* |
+| **Day 6** - 24.08.2026 | *(Relational operators, Logical Oparators, Using Column alias , condition based on range (Between)* |
+| 22nd and 24th AUG Week Off |
+| **Day 5** - 21.08.2026 | *(Changing the structure of a table,Eliminating duplicate values,Arithematic operators)* |
+| **Day 4** - 20.08.2026 | *(Different Types Of SQL Commands)* | *Folder Name* |
+| **Day 3** - 19.08.2026 | *(Key featutures of MYSql,Data Types,)* |
+| **Day 2** - 18.08.2026 | *(Learning Outcomes)* |
+| **Day 1** - 17.08.2026 | *(overall brief about syllabus-CITS_CSA)* |
 
 ## 🛠️ Technologies & Subjects Covered
 *Module-2 Database Concepts(Started On 18/8/2026-)*
