@@ -1,0 +1,172 @@
+mysql> create database Microsoft;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Microsoft;
+Database changed
+mysql> CREATE TABLE employee (
+    ->     Id INT PRIMARY KEY,
+    ->     Name VARCHAR(50),
+    ->     Department VARCHAR(50),
+    ->     Salary INT,
+    ->     Gender VARCHAR(10),
+    ->     Age INT,
+    ->     City VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO employee (Id, Name, Department, Salary, Gender, Age, City) VALUES
+    -> (1001, 'John Doe', 'IT', 35000, 'Male', 25, 'London'),
+    -> (1002, 'Mary Smith', 'HR', 45000, 'Female', 27, 'Mumbai'),
+    -> (1003, 'James Brown', 'Finance', 50000, 'Male', 28, 'Delhi'),
+    -> (1004, 'Mike Walker', 'Finance', 50000, 'Male', 28, 'London'),
+    -> (1005, 'Linda Jones', 'HR', 75000, 'Female', 26, 'Mumbai'),
+    -> (1006, 'Anurag Mohanty', 'IT', 35000, 'Male', 25, 'London'),
+    -> (1007, 'Priyanla Dewangan', 'HR', 45000, 'Female', 27, 'Mumbai'),
+    -> (1008, 'Sambit Mohanty', 'IT', 50000, 'Male', 28, 'London'),
+    -> (1009, 'Pranaya Kumar', 'IT', 50000, 'Male', 28, 'London'),
+    -> (1010, 'Hina Sharma', 'HR', 75000, 'Female', 26, 'Mumbai');
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> SELECT Name
+    -> FROM employee
+    -> WHERE Department = 'IT';
++----------------+
+| Name           |
++----------------+
+| John Doe       |
+| Anurag Mohanty |
+| Sambit Mohanty |
+| Pranaya Kumar  |
++----------------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT Name
+    -> FROM employee
+    -> WHERE Department = 'IT';
++----------------+
+| Name           |
++----------------+
+| John Doe       |
+| Anurag Mohanty |
+| Sambit Mohanty |
+| Pranaya Kumar  |
++----------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Name, Salary
+    -> FROM employee
+    -> WHERE Gender = 'Female';
++-------------------+--------+
+| Name              | Salary |
++-------------------+--------+
+| Mary Smith        |  45000 |
+| Linda Jones       |  75000 |
+| Priyanla Dewangan |  45000 |
+| Hina Sharma       |  75000 |
++-------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employee
+    -> WHERE Salary > 35000;
++------+-------------------+------------+--------+--------+------+--------+
+| Id   | Name              | Department | Salary | Gender | Age  | City   |
++------+-------------------+------------+--------+--------+------+--------+
+| 1002 | Mary Smith        | HR         |  45000 | Female |   27 | Mumbai |
+| 1003 | James Brown       | Finance    |  50000 | Male   |   28 | Delhi  |
+| 1004 | Mike Walker       | Finance    |  50000 | Male   |   28 | London |
+| 1005 | Linda Jones       | HR         |  75000 | Female |   26 | Mumbai |
+| 1007 | Priyanla Dewangan | HR         |  45000 | Female |   27 | Mumbai |
+| 1008 | Sambit Mohanty    | IT         |  50000 | Male   |   28 | London |
+| 1009 | Pranaya Kumar     | IT         |  50000 | Male   |   28 | London |
+| 1010 | Hina Sharma       | HR         |  75000 | Female |   26 | Mumbai |
++------+-------------------+------------+--------+--------+------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM employee
+    -> WHERE Department = 'Finance' AND City = 'London';
++------+-------------+------------+--------+--------+------+--------+
+| Id   | Name        | Department | Salary | Gender | Age  | City   |
++------+-------------+------------+--------+--------+------+--------+
+| 1004 | Mike Walker | Finance    |  50000 | Male   |   28 | London |
++------+-------------+------------+--------+--------+------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT Name, Salary
+    -> FROM employee
+    -> WHERE Gender = 'Female' AND City = 'Mumbai';
++-------------------+--------+
+| Name              | Salary |
++-------------------+--------+
+| Mary Smith        |  45000 |
+| Linda Jones       |  75000 |
+| Priyanla Dewangan |  45000 |
+| Hina Sharma       |  75000 |
++-------------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> ADD hobby VARCHAR(50);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> MODIFY Salary TEXT;
+Query OK, 10 rows affected (0.06 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> -- Example: Update hobby for a specific employee
+mysql> UPDATE employee
+    -> SET hobby = 'Reading'
+    -> WHERE Id = 1001;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>
+mysql> -- Example: Update hobby for all records with a default value
+mysql> UPDATE employee
+    -> SET hobby = 'Music';
+Query OK, 10 rows affected (0.06 sec)
+Rows matched: 10  Changed: 10  Warnings: 0
+
+mysql> ALTER TABLE employee
+    -> DROP COLUMN hobby;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT DISTINCT City
+    -> FROM employee;
++--------+
+| City   |
++--------+
+| London |
+| Mumbai |
+| Delhi  |
++--------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE employee
+    -> RENAME COLUMN Department TO D_Name;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++------+-------------------+---------+--------+--------+------+--------+
+| Id   | Name              | D_Name  | Salary | Gender | Age  | City   |
++------+-------------------+---------+--------+--------+------+--------+
+| 1001 | John Doe          | IT      | 35000  | Male   |   25 | London |
+| 1002 | Mary Smith        | HR      | 45000  | Female |   27 | Mumbai |
+| 1003 | James Brown       | Finance | 50000  | Male   |   28 | Delhi  |
+| 1004 | Mike Walker       | Finance | 50000  | Male   |   28 | London |
+| 1005 | Linda Jones       | HR      | 75000  | Female |   26 | Mumbai |
+| 1006 | Anurag Mohanty    | IT      | 35000  | Male   |   25 | London |
+| 1007 | Priyanla Dewangan | HR      | 45000  | Female |   27 | Mumbai |
+| 1008 | Sambit Mohanty    | IT      | 50000  | Male   |   28 | London |
+| 1009 | Pranaya Kumar     | IT      | 50000  | Male   |   28 | London |
+| 1010 | Hina Sharma       | HR      | 75000  | Female |   26 | Mumbai |
++------+-------------------+---------+--------+--------+------+--------+
+10 rows in set (0.00 sec)
+
+mysql>

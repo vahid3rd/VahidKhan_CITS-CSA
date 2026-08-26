@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CITS-CSA DAY 1 Task Dated 19.8.2026</title>
+</head>
+<body>
+
+
+
+    <!-- 1. Image Tag -->
+    <img src="https://via.placeholder.com/150" alt="Sample Image" width="150">
+
+    <!-- 2. Paragraph, Bold, and Italic Tags -->
+    <p>This is a <b>bold</b> text and this is an <i>italic</i> text.</p>
+
+    <!-- 3. Marquee Tag -->
+    <marquee>Welcome to NSTI Hyderabad Webpage</marquee>
+
+    <!-- 4. Anchor (Link) Tag -->
+    <p>Visit our website: <a href="https://nstihyderabad1.dgt.gov.in">Click here for NSTI Hyderabad</a></p>
+
+    <!-- 5. Table Tag -->
+    <table border="1">
+        <tr>
+            <th><td>Sno</td></th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Vahid Khan Pathan</td>
+        </tr>
+    </table>
+
+</body>
+</html>
