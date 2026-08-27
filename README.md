@@ -10,6 +10,8 @@ Welcome to my CITS (Computer Software Application) tracking repository. I use th
 All my daily exercises and notes are organized into separate folders by date. Below is a log of what was taught in class:
 
 | Day & Date | Topics Covered / Practical Work |
+| **Day 8** - 25.08.2026 | *(Understanding Condition based on pattern matches, Inserting Data Values, Constrains(Not Null , Unique , Default , Primary Key , Foregin Key)* |
+| 26th holiday milad un nabi |
 | **Day 7** - 25.08.2026 | *(Understanding NULL,Executing UPDATE and DELETE,Sorting Query Results)* |
 | **Day 6** - 24.08.2026 | *(Relational operators, Logical Oparators, Using Column alias , condition based on range (Between)* |
 | 22nd and 24th AUG Week Off |
