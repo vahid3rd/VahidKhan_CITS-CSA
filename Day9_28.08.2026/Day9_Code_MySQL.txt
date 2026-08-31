@@ -1,0 +1,88 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| kvdc               |
+| kvdc_nrt           |
+| microsoft          |
+| mysql              |
+| nsti_db            |
+| nsti_r             |
+| nsti_rhyd          |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> use nsti_db;
+Database changed
+mysql> CREATE TABLE departments (dept_id INT PRIMARY KEY AUTO_INCREMENT, dept_name VARCHAR(50) NOT NULL UNIQUE);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> CREATE TABLE employees (emp_id INT PRIMARY KEY AUTO_INCREMENT,emp_name VARCHAR(50) NOT NULL, email VARCHAR(100) UNIQUE,dept_id INT,CONSTRAINT fk_department FOREIGN KEY (dept_id) REFERENCES departments(dept_id) ON DELETE SET NULL);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> INSERT INTO departments (dept_name) VALUES ('Teaching Staff'),('Non-Teaching Staff');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO employees (emp_name, email, dept_id) VALUES ('vahid khan', 'abc@company.com', 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO employees (emp_name, email, dept_id) VALUES ('Mahaboob khan', 'def@company.com', 1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM employees;
++--------+---------------+-----------------+---------+
+| emp_id | emp_name      | email           | dept_id |
++--------+---------------+-----------------+---------+
+|      1 | vahid khan    | abc@company.com |       1 |
+|      2 | Mahaboob khan | def@company.com |       1 |
++--------+---------------+-----------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> -- Testing Part
+mysql> --emp_name cannot be NULL
+    -> INSERT INTO employees (emp_name, email, dept_id) VALUES (NULL, 'abc@company.com', 1);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--emp_name cannot be NULL
+INSERT INTO employees (emp_name, email, dept_id) VALUE' at line 1
+mysql> -- ERROR: 'def@company.com' already exists
+mysql> INSERT INTO employees (emp_name, email, dept_id) VALUES ('raheem', 'def@company.com', 1);
+ERROR 1062 (23000): Duplicate entry 'def@company.com' for key 'employees.email'
+mysql> --
+mysql> -- ERROR: Department ID 99 does not exist in the departments table
+mysql> INSERT INTO employees (emp_name, email, dept_id) VALUES ('ahmad', 'ahmad@company.com', 99);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`nsti_db`.`employees`, CONSTRAINT `fk_department` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`dept_id`) ON DELETE SET NULL)
+mysql> CREATE TABLE departments (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));
+ERROR 1050 (42S01): Table 'departments' already exists
+mysql> CREATE TABLE departments123 (dept_id INT PRIMARY KEY, dept_name VARCHAR(50));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> DESC DEPARTMENTS123;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_id   | int         | NO   | PRI | NULL    |       |
+| dept_name | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO DEPARTMENTS123 VALUES(1,"A");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM DEPARTMENTS123;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|       1 | A         |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO DEPARTMENTS123 VALUES(1,"A");
+ERROR 1062 (23000): Duplicate entry '1' for key 'departments123.PRIMARY'
+mysql> INSERT INTO DEPARTMENTS123 VALUES(NULL,"A");
+ERROR 1048 (23000): Column 'dept_id' cannot be null
+mysql>

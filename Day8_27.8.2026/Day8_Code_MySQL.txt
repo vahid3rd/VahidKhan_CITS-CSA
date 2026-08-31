@@ -1,0 +1,182 @@
+mysql> INSERT INTO Student1 (Sno, Name, Marks, City) VALUES (1, 'Anur', 78, 'Hyd'), (2, 'Babli', 70, 'Delhi'), (3, 'Chandrika', 80, 'Nagpur'), (4, 'Chandu', 35, 'Hyd'), (5, 'Devaki', 80, 'Hyd'), (6, 'Devika', 75, 'Mumbai');
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Student;
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   1 | Anur      |    78 | Hyd    |
+|   2 | Babli     |    70 | Delhi  |
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
+|   5 | Devaki    |    80 | Hyd    |
+|   6 | Devika    |    75 | Mumbai |
++-----+-----------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT INTO Student1 (Sno, Name, Marks, City) VALUES (1, 'U', 89, 'Gnt');
+ERROR 1062 (23000): Duplicate entry '1' for key 'student1.PRIMARY'
+mysql> INSERT INTO Student1 (Sno, Name, Marks, City) VALUES (7, 'U', 89, 'Gnt');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Student;
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   1 | Anur      |    78 | Hyd    |
+|   2 | Babli     |    70 | Delhi  |
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
+|   5 | Devaki    |    80 | Hyd    |
+|   6 | Devika    |    75 | Mumbai |
++-----+-----------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1;
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   1 | Anur      |    78 | Hyd    |
+|   2 | Babli     |    70 | Delhi  |
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
+|   5 | Devaki    |    80 | Hyd    |
+|   6 | Devika    |    75 | Mumbai |
+|   7 | U         |    89 | Gnt    |
++-----+-----------+-------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%u%";
++-----+--------+-------+------+
+| Sno | Name   | Marks | City |
++-----+--------+-------+------+
+|   1 | Anur   |    78 | Hyd  |
+|   4 | Chandu |    35 | Hyd  |
+|   7 | U      |    89 | Gnt  |
++-----+--------+-------+------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Student1 where name like "%u";
++-----+--------+-------+------+
+| Sno | Name   | Marks | City |
++-----+--------+-------+------+
+|   4 | Chandu |    35 | Hyd  |
+|   7 | U      |    89 | Gnt  |
++-----+--------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "___";
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "____";
++-----+------+-------+------+
+| Sno | Name | Marks | City |
++-----+------+-------+------+
+|   1 | Anur |    78 | Hyd  |
++-----+------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%b";
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%B";
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "b%";
++-----+-------+-------+-------+
+| Sno | Name  | Marks | City  |
++-----+-------+-------+-------+
+|   2 | Babli |    70 | Delhi |
++-----+-------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "cha%";
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
++-----+-----------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%nd%";
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
++-----+-----------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%a" or name like "%d";
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   3 | Chandrika |    80 | Nagpur |
+|   6 | Devika    |    75 | Mumbai |
++-----+-----------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "c___du";
++-----+--------+-------+------+
+| Sno | Name   | Marks | City |
++-----+--------+-------+------+
+|   4 | Chandu |    35 | Hyd  |
++-----+--------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name like "%b";
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM Student1 where name not like "b%";
++-----+-----------+-------+--------+
+| Sno | Name      | Marks | City   |
++-----+-----------+-------+--------+
+|   1 | Anur      |    78 | Hyd    |
+|   3 | Chandrika |    80 | Nagpur |
+|   4 | Chandu    |    35 | Hyd    |
+|   5 | Devaki    |    80 | Hyd    |
+|   6 | Devika    |    75 | Mumbai |
+|   7 | U         |    89 | Gnt    |
++-----+-----------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Student1 ADD COLUMN Admission_Date DATETIME DEFAULT CURRENT_TIMESTAMP;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Student1;
++-----+-----------+-------+--------+---------------------+
+| Sno | Name      | Marks | City   | Admission_Date      |
++-----+-----------+-------+--------+---------------------+
+|   1 | Anur      |    78 | Hyd    | 2026-08-27 18:06:21 |
+|   2 | Babli     |    70 | Delhi  | 2026-08-27 18:06:21 |
+|   3 | Chandrika |    80 | Nagpur | 2026-08-27 18:06:21 |
+|   4 | Chandu    |    35 | Hyd    | 2026-08-27 18:06:21 |
+|   5 | Devaki    |    80 | Hyd    | 2026-08-27 18:06:21 |
+|   6 | Devika    |    75 | Mumbai | 2026-08-27 18:06:21 |
+|   7 | U         |    89 | Gnt    | 2026-08-27 18:06:21 |
++-----+-----------+-------+--------+---------------------+
+7 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Student1 ADD COLUMN Exam_Date DATE, ADD COLUMN Exam_Time TIME;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Student1;
++-----+-----------+-------+--------+---------------------+-----------+-----------+
+| Sno | Name      | Marks | City   | Admission_Date      | Exam_Date | Exam_Time |
++-----+-----------+-------+--------+---------------------+-----------+-----------+
+|   1 | Anur      |    78 | Hyd    | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   2 | Babli     |    70 | Delhi  | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   3 | Chandrika |    80 | Nagpur | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   4 | Chandu    |    35 | Hyd    | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   5 | Devaki    |    80 | Hyd    | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   6 | Devika    |    75 | Mumbai | 2026-08-27 18:06:21 | NULL      | NULL      |
+|   7 | U         |    89 | Gnt    | 2026-08-27 18:06:21 | NULL      | NULL      |
++-----+-----------+-------+--------+---------------------+-----------+-----------+
+7 rows in set (0.00 sec)
+
+mysql> --
+mysql> -- Constrains - not null, Unique , Default , Primary Key, Foreign key
