@@ -1,0 +1,189 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| continents         |
+| information_schema |
+| kvdc               |
+| kvdc_nrt           |
+| microsoft          |
+| mysql              |
+| nsti_db            |
+| nsti_r             |
+| nsti_rhyd          |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use continents;
+Database changed
+mysql> create table countries (country_id int primary key,country_name varchar(50),region_id int);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | NO   | PRI | NULL    |       |
+| country_name | varchar(50) | YES  |     | NULL    |       |
+| region_id    | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> insert into countries values(101,"India",1),(102,"Germany",2),(103,"Japan",3),(104,"United State Of America",4),(105,"United Kingdom",5);
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from countries;
++------------+-------------------------+-----------+
+| country_id | country_name            | region_id |
++------------+-------------------------+-----------+
+|        101 | India                   |         1 |
+|        102 | Germany                 |         2 |
+|        103 | Japan                   |         3 |
+|        104 | United State Of America |         4 |
+|        105 | United Kingdom          |         5 |
++------------+-------------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table coustomer(cust_id int, c_date date, cust_name varchar(20),cust_address varchar(30),amount decimal(7,2),cust_phone int(10));
+Query OK, 0 rows affected, 1 warning (0.08 sec)
+
+mysql> desc customer;
+ERROR 1146 (42S02): Table 'continents.customer' doesn't exist
+mysql> rename table coustomer to customer;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc customer;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| cust_id      | int          | YES  |     | NULL    |       |
+| c_date       | date         | YES  |     | NULL    |       |
+| cust_name    | varchar(20)  | YES  |     | NULL    |       |
+| cust_address | varchar(30)  | YES  |     | NULL    |       |
+| amount       | decimal(7,2) | YES  |     | NULL    |       |
+| cust_phone   | int          | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table customer1(customerId int, customerName varchar(40),lastname varchar(40),country varchar(50), age int,phone int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into customer1 values (1,"shubham","thakur","india",23,9415536635),(2,"aman","chopra","australia",21,9812345678),(3,"naveen","tulasi","sri lanka",24,9123456789),(4,"aditya","arpan","austria",21,9876543210),(5,"nishant","jain","spain",22,7012345678);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc customer1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| customerId   | int         | YES  |     | NULL    |       |
+| customerName | varchar(40) | YES  |     | NULL    |       |
+| lastname     | varchar(40) | YES  |     | NULL    |       |
+| country      | varchar(50) | YES  |     | NULL    |       |
+| age          | int         | YES  |     | NULL    |       |
+| phone        | bigint      | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from customer1;
++------------+--------------+----------+-----------+------+------------+
+| customerId | customerName | lastname | country   | age  | phone      |
++------------+--------------+----------+-----------+------+------------+
+|          1 | shubham      | thakur   | india     |   23 | 9415536635 |
+|          2 | aman         | chopra   | australia |   21 | 9812345678 |
+|          3 | naveen       | tulasi   | sri lanka |   24 | 9123456789 |
+|          4 | aditya       | arpan    | austria   |   21 | 9876543210 |
+|          5 | nishant      | jain     | spain     |   22 | 7012345678 |
++------------+--------------+----------+-----------+------+------------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE customer1  SET customername = 'nithin'  WHERE age = 22;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer1;
++------------+--------------+----------+-----------+------+------------+
+| customerId | customerName | lastname | country   | age  | phone      |
++------------+--------------+----------+-----------+------+------------+
+|          1 | shubham      | thakur   | india     |   23 | 9415536635 |
+|          2 | aman         | chopra   | australia |   21 | 9812345678 |
+|          3 | naveen       | tulasi   | sri lanka |   24 | 9123456789 |
+|          4 | aditya       | arpan    | austria   |   21 | 9876543210 |
+|          5 | nithin       | jain     | spain     |   22 | 7012345678 |
++------------+--------------+----------+-----------+------+------------+
+5 rows in set (0.00 sec)
+
+
+mysql> ALTER TABLE customer1  ADD PRIMARY KEY (CustomerId);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer1;
++------------+--------------+----------+-----------+------+------------+
+| customerId | customerName | lastname | country   | age  | phone      |
++------------+--------------+----------+-----------+------+------------+
+|          1 | shubham      | thakur   | india     |   23 | 9415536635 |
+|          2 | aman         | chopra   | australia |   21 | 9812345678 |
+|          3 | naveen       | tulasi   | sri lanka |   24 | 9123456789 |
+|          4 | aditya       | arpan    | austria   |   21 | 9876543210 |
++------------+--------------+----------+-----------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> desc customer1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| customerId   | int         | NO   | PRI | NULL    |       |
+| customerName | varchar(40) | YES  |     | NULL    |       |
+| lastname     | varchar(40) | YES  |     | NULL    |       |
+| country      | varchar(50) | YES  |     | NULL    |       |
+| age          | int         | YES  |     | NULL    |       |
+| phone        | bigint      | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT age FROM customer1;
++------+
+| age  |
++------+
+|   23 |
+|   21 |
+|   24 |
++------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM customer1  WHERE CustomerName = 'nithin';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from customer1;
++------------+--------------+----------+-----------+------+------------+
+| customerId | customerName | lastname | country   | age  | phone      |
++------------+--------------+----------+-----------+------+------------+
+|          1 | shubham      | thakur   | india     |   23 | 9415536635 |
+|          2 | aman         | chopra   | australia |   21 | 9812345678 |
+|          3 | naveen       | tulasi   | sri lanka |   24 | 9123456789 |
+|          4 | aditya       | arpan    | austria   |   21 | 9876543210 |
++------------+--------------+----------+-----------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE customer1  SET country = 'India'  WHERE customername= 'aman';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer1;
++------------+--------------+----------+-----------+------+------------+
+| customerId | customerName | lastname | country   | age  | phone      |
++------------+--------------+----------+-----------+------+------------+
+|          1 | shubham      | thakur   | india     |   23 | 9415536635 |
+|          2 | aman         | chopra   | India     |   21 | 9812345678 |
+|          3 | naveen       | tulasi   | sri lanka |   24 | 9123456789 |
+|          4 | aditya       | arpan    | austria   |   21 | 9876543210 |
++------------+--------------+----------+-----------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql>
