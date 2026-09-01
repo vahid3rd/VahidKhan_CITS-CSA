@@ -10,8 +10,10 @@ Welcome to my CITS (Computer Software Application) tracking repository. I use th
 All my daily exercises and notes are organized into separate folders by date. Below is a log of what was taught in class:
 
 | Day & Date | Topics Covered / Practical Work |
-| **Day 8** - 28.08.2026 | *(Understanding Constrains(Not Null , Unique , Default , Primary Key , Foregin Key)* |
+| **Day 11** - 31.08.2026 | *(Assignment 1 on MYSQL)* |
+| **Day 10** - 31.08.2026 | *(Nothing Done on this day )* |
 | 29th and 30th AUG Week Off |
+| **Day 9** - 28.08.2026 | *(Understanding Constrains(Not Null , Unique , Default , Primary Key , Foregin Key)* |
 | **Day 8** - 27.08.2026 | *(Understanding Condition based on pattern matches, Inserting Date Values, Constrains(Not Null , Unique , Default , Primary Key , Foregin Key)* |
 | 26th holiday milad un nabi |
 | **Day 7** - 25.08.2026 | *(Understanding NULL,Executing UPDATE and DELETE,Sorting Query Results)* |
